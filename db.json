@@ -41,6 +41,14 @@
       "role": "user",
       "createdAt": "2025-05-05T14:29:22.670Z",
       "updatedAt": "2025-05-05T14:29:22.670Z"
+    },
+    {
+      "id": "e939360f-e4ad-46d7-8125-e8f8f2950c03",
+      "name": "ai",
+      "email": "ai@live.com",
+      "role": "user",
+      "createdAt": "2025-05-05T14:46:17.468Z",
+      "updatedAt": "2025-05-05T14:46:17.468Z"
     }
   ]
 }
