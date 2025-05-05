@@ -10,6 +10,7 @@ import {
 } from '@/components/ui/card'
 import {Input} from '@/components/ui/input'
 import {Label} from '@/components/ui/label'
+import {FaApple, FaGoogle} from 'react-icons/fa'
 
 export function LoginForm({className, ...props}: React.ComponentProps<'div'>) {
   return (
@@ -25,9 +26,11 @@ export function LoginForm({className, ...props}: React.ComponentProps<'div'>) {
           <form>
             <div className="grid gap-6">
               <Button variant="outline" className="w-full">
+                <FaApple className="text-xl" /> {/* Logo Apple */}
                 Login with Apple
               </Button>
               <Button variant="outline" className="w-full">
+                <FaGoogle className="text-xl" /> {/* Logo Apple */}
                 Login with Google
               </Button>
               <div className="relative text-center text-sm">

@@ -11,9 +11,7 @@ export default function RegisterPage() {
         </div>
         Acme Inc.
       </a>
-      <div className="bg-card flex flex-col gap-6 rounded-lg p-6 shadow-md">
-        <RegisterForm />
-      </div>
+      <RegisterForm />
     </div>
   )
 }
