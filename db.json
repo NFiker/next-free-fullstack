@@ -17,6 +17,22 @@
       "password": "password",
       "createdAt": "2025-03-05T03:56:41.538Z",
       "updatedAt": "2025-03-05T03:56:41.538Z"
+    },
+    {
+      "id": "ae7ac4e6-5a15-42c7-871f-2f954189c446",
+      "name": "lu",
+      "email": "lu@gmail.com",
+      "role": "user",
+      "createdAt": "2025-05-05T13:03:12.375Z",
+      "updatedAt": "2025-05-05T13:03:12.375Z"
+    },
+    {
+      "id": "9ec2a7cd-4af7-45fa-bde9-ae6710749d05",
+      "name": "tu",
+      "email": "tu@gmail.com",
+      "role": "user",
+      "createdAt": "2025-05-05T13:15:16.416Z",
+      "updatedAt": "2025-05-05T13:15:16.416Z"
     }
   ]
 }
