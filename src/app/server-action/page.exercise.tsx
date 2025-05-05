@@ -8,7 +8,10 @@ import {Input} from '@/components/ui/input'
 import {Label} from '@/components/ui/label'
 import {useState} from 'react'
 import {addUser} from './actions.exercise'
+<<<<<<< HEAD
 import {log} from 'console'
+=======
+>>>>>>> 1ea44fae1858dad54e663ec585ddf44013a78d56
 
 // 🐶  Importe la `Server Action` et `useState`
 // 🤖 Ajoute :
@@ -32,7 +35,11 @@ export default function Page() {
     e.preventDefault()
     const result = await addUser(name, email)
     if (result.error) {
+<<<<<<< HEAD
       setMessage(result.error)
+=======
+      setMessage('erreur création utilisateur')
+>>>>>>> 1ea44fae1858dad54e663ec585ddf44013a78d56
     } else {
       setMessage('utilisateur crée')
       setEmail('')
