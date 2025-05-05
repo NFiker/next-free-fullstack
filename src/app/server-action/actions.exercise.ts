@@ -2,9 +2,11 @@
 
 // 🐶 Première étape : Ajoute la directive `use server` pour indiquer que c'est une Server Action
 // 🤖 Ajoute : 'use server'
+'use server'
 
 // 🐶 Deuxième étape : Importe la fonction `createUser` depuis `@/db`
 // 🤖 import { createUser } from '@/db'
+import {createUser} from '@/db'
 
 // 🐶 Troisième étape : Crée la fonction `addUser` qui prend name et email en paramètres
 export async function addUser(name: string, email: string) {
@@ -21,10 +23,15 @@ export async function addUser(name: string, email: string) {
     //   email,
     //   role: 'user'
     // })
+    const user = await createUser({
+      name,
+      email,
+      role: 'user',
+    })
 
-    return {success: true}
+    return {success: true, user}
     // eslint-disable-next-line no-unreachable
-  } catch {
+  } catch (error) {
     return {error: 'Erreur lors de la création'}
   }
 }
