@@ -1,5 +1,6 @@
 import CredentialsProvider from 'next-auth/providers/credentials'
 import type {NextAuthConfig} from 'next-auth'
+import {getUserByEmail} from '@/db'
 //import {getUserByEmail} from '@/db'
 
 export const authConfig: NextAuthConfig = {
@@ -30,7 +31,21 @@ export const authConfig: NextAuthConfig = {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       async authorize(credentials) {
         // TODO: Implémenter la fonction authorize
-        return null
+        if (!credentials?.email || !credentials?.password) {
+          return null
+        }
+        const user = await getUserByEmail(credentials.email as string)
+
+        if (!user) return null
+        if (user.password !== credentials.password)
+          // use bcrypt salt etc for real security
+          return null
+        return {
+          id: user.id,
+          email: user.email,
+          name: user.name,
+          role: user.role,
+        }
       },
     }),
   ],
