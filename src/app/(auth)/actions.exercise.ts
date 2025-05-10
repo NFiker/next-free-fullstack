@@ -1,7 +1,7 @@
 'use server'
 
 import {createUser} from '@/db'
-import {signIn} from '@/lib/auth'
+import {signIn, signOut} from '@/lib/auth'
 import {log} from 'console'
 import {AuthError} from 'next-auth'
 import {isRedirectError} from 'next/dist/client/components/redirect-error'
@@ -111,4 +111,10 @@ export async function register(formData: FormData) {
 export async function logout() {
   console.log('logout appelé')
   // TODO: Implémenter la fonction `logout`
+  try {
+    await signOut({redirect: false})
+    redirect('/login')
+  } catch (error) {
+    return {success: false, message: 'Erreur lors de la déconnexion'}
+  }
 }
