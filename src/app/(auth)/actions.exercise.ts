@@ -1,5 +1,10 @@
 'use server'
 
+import {signIn} from '@/lib/auth'
+import {AuthError} from 'next-auth'
+import {isRedirectError} from 'next/dist/client/components/redirect-error'
+import {redirect} from 'next/navigation'
+
 // import {signIn, signOut} from '@/lib/auth'
 // import {AuthError} from 'next-auth'
 // import {isRedirectError} from 'next/dist/client/components/redirect-error'
@@ -18,6 +23,28 @@
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function login(formData: FormData) {
+  const email = formData.get('email')
+  const password = formData.get('password')
+  if (!email || !password) {
+    return {success: false, message: 'Email et mot de passe requis'}
+  }
+
+  try {
+    await signIn('credentials', {email, password, redirect: false})
+    redirect('/dashboard')
+  } catch (error) {
+    if (isRedirectError(error)) {
+      throw error
+    }
+    //Gérer les erreurs d'authentification
+    if (error instanceof AuthError) {
+      return {
+        success: false,
+        message: 'Identifiants invalides',
+      }
+    }
+  }
+
   console.log('login appelé')
   // TODO: Implémenter la fonction `login`
 }
