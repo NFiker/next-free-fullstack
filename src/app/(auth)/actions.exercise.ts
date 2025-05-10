@@ -1,6 +1,8 @@
 'use server'
 
+import {createUser} from '@/db'
 import {signIn} from '@/lib/auth'
+import {log} from 'console'
 import {AuthError} from 'next-auth'
 import {isRedirectError} from 'next/dist/client/components/redirect-error'
 import {redirect} from 'next/navigation'
@@ -22,6 +24,9 @@ import {redirect} from 'next/navigation'
  * 5. Gérer les erreurs d'authentification
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
+// TODO: Implémenter la fonction `login`
+console.log('login appelé')
 export async function login(formData: FormData) {
   const email = formData.get('email')
   const password = formData.get('password')
@@ -44,9 +49,6 @@ export async function login(formData: FormData) {
       }
     }
   }
-
-  console.log('login appelé')
-  // TODO: Implémenter la fonction `login`
 }
 
 /**
@@ -63,8 +65,40 @@ export async function login(formData: FormData) {
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function register(formData: FormData) {
-  console.log('register appelé')
-  // TODO: Implémenter la fonction `register`
+  const name = formData.get('name')?.toString()
+  const email = formData.get('email')?.toString()
+  const password = formData.get('password')?.toString()
+  const confirmPassword = formData.get('confirmPassword')?.toString()
+
+  if (!name || !email || !password || !confirmPassword) {
+    return {success: false, message: 'Tous les champs sont requis'}
+  }
+
+  if (password !== confirmPassword) {
+    return {success: false, message: 'Les mots de passe doivent correspondre'}
+  }
+
+  try {
+    const user = await createUser({name, email, password, role: 'user'})
+
+    await signIn('credentials', {
+      email: user.email,
+      password,
+      redirect: false,
+    })
+
+    redirect('/dashboard')
+  } catch (error) {
+    if (isRedirectError(error)) throw error
+
+    return {
+      success: false,
+      message:
+        error instanceof Error
+          ? error.message
+          : 'Erreur lors de la création du compte',
+    }
+  }
 }
 
 /**

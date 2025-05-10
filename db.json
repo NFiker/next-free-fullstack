@@ -26,6 +26,15 @@
       "role": "user",
       "createdAt": "2025-03-05T07:15:12.673Z",
       "updatedAt": "2025-03-05T07:15:12.673Z"
+    },
+    {
+      "id": "6bdef5e3-e934-49ed-b368-b9f56aac2a4f",
+      "name": "yoyo",
+      "email": "yoyo@gmail.yo",
+      "password": "yoyo",
+      "role": "user",
+      "createdAt": "2025-05-10T14:42:08.945Z",
+      "updatedAt": "2025-05-10T14:42:08.945Z"
     }
   ]
 }
